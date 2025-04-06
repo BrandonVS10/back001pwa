@@ -53,7 +53,7 @@ router.post('/login', async (req, res) => {
 // Obtener lista de usuarios
 router.get('/users', async (req, res) => {
   try {
-    const userList = await User.find({}, 'id nombre email suscripcion');
+    const userList = await User.find({}, 'id email suscripcion');
     res.status(200).json(userList);
   } catch (error) {
     res.status(500).json({ message: 'Error al obtener los usuarios', error: error.message });
@@ -87,10 +87,10 @@ router.post('/suscripcion', async (req, res) => {
 
 // Enviar notificación con la suscripción del usuario
 router.post('/suscripcionMod', async (req, res) => {
-  const { suscripcion, nombre, mensaje } = req.body;
+  const { suscripcion, mensaje } = req.body;
 
   try {
-    await sends(suscripcion, nombre, mensaje);
+    await sends(suscripcion, mensaje);
 
     res.status(200).json({ message: 'Mensaje enviado' });
   } catch (error) {
