@@ -38,7 +38,7 @@ async function sends(sub, nombre, mensaje) {
     const payload = JSON.stringify({
       title: `Hola ${nombre}`,
       body: mensaje
-    })
+    });
     await webpush.sendNotification(sub, payload);
     return { mensaje: "ok" }; // Retorna un objeto, pero no usa `res.json()`
   } catch (error) {
