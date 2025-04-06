@@ -2,6 +2,7 @@ const webpush = require("web-push");
 const { readFileSync } = require("fs");
 const path = require("path");
 const { error } = require("console");   
+const { title } = require("process");
 
 // Configuración de Web Push con variables de entorno
 const keysPath = path.resolve("keys.json");
@@ -34,7 +35,11 @@ function sendPush(subscription, userEmail) {
 // Función para enviar una notificación con un mensaje personalizado
 async function sends(sub, mensaje) {
   try {
-    await webpush.sendNotification(sub, mensaje);
+    const payload = JSON.stringify({
+      title: `Hola ${nombre}`,
+      body: mensaje
+    })
+    await webpush.sendNotification(sub, payload);
     return { mensaje: "ok" }; // Retorna un objeto, pero no usa `res.json()`
   } catch (error) {
     if (error.body.includes('expired') && error.statusCode == 410) {
