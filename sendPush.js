@@ -32,9 +32,12 @@ function sendPush(subscription, userEmail) {
 }
 
 // Función para enviar una notificación con un mensaje personalizado
-async function sends(sub, mensaje) {
+async function sends(sub, nombre, mensaje) {
   try {
-    const payload = JSON.stringify(mensaje) // back5
+    const payload = JSON.stringify({
+      title: `Hola ${nombre}`,
+      body: mensaje
+    }) // back5
     await webpush.sendNotification(sub, payload);
     return { mensaje: "ok" }; // Retorna un objeto, pero no usa `res.json()`
   } catch (error) {
