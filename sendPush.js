@@ -33,7 +33,7 @@ function sendPush(subscription, userEmail) {
 }
 
 // Función para enviar una notificación con un mensaje personalizado
-async function sends(sub, mensaje) {
+async function sends(sub, nombre, mensaje) {
   try {
     const payload = JSON.stringify({
       title: `Hola ${nombre}`,
