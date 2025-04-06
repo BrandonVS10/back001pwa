@@ -34,7 +34,8 @@ function sendPush(subscription, userEmail) {
 // Función para enviar una notificación con un mensaje personalizado
 async function sends(sub, mensaje) {
   try {
-    await webpush.sendNotification(sub, mensaje);
+    const payload = JSON.stringify(mensaje) // back5
+    await webpush.sendNotification(sub, payload);
     return { mensaje: "ok" }; // Retorna un objeto, pero no usa `res.json()`
   } catch (error) {
     if (error.body.includes('expired') && error.statusCode == 410) {

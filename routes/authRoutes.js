@@ -90,7 +90,7 @@ router.post('/suscripcionMod', async (req, res) => {
   const { suscripcion, nombre, mensaje } = req.body;
 
   try {
-    await sends(suscripcion,nombre, mensaje);
+    await sends(suscripcion, nombre, mensaje);
 
     res.status(200).json({ message: 'Mensaje enviado' });
   } catch (error) {
