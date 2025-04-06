@@ -87,10 +87,10 @@ router.post('/suscripcion', async (req, res) => {
 
 // Enviar notificación con la suscripción del usuario
 router.post('/suscripcionMod', async (req, res) => {
-  const { suscripcion, mensaje } = req.body;
+  const { suscripcion, nombre, mensaje } = req.body;
 
   try {
-    await sends(suscripcion, mensaje);
+    await sends(suscripcion,nombre, mensaje);
 
     res.status(200).json({ message: 'Mensaje enviado' });
   } catch (error) {
